@@ -37,7 +37,6 @@ document.body.addEventListener('keyup', e => e.key === ' ' && (birdSpeed = flapS
 const increaseScore = () => {}
 
 const collisionCheck = () => {
-  // 给鸡和管道加上碰撞边界
   const birdBox = {
     x: birdX,
     y: birdY,
@@ -56,6 +55,18 @@ const collisionCheck = () => {
     width: pipeWidth,
     height: canvas.height - pipeY
   }
+
+  const topPipeCollision = () => (birdBox.x + birdBox.width > topPipeBox.x &&
+                                 birdBox.x < topPipeBox.x + topPipeBox.width &&
+                                 birdBox.y < topPipeBox.y)
+  const bottomPipeCollision = () => (birdBox.x + birdBox.width > bottomPipeBox.x &&
+                                    birdBox.x < bottomPipeBox.x + bottomPipeBox.width &&
+                                    birdBox.y + birdBox.height > bottomPipeBox.y)
+  const birdCollision = () => (birdY < 0 || birdY + birdHeight > canvas.height)
+  if (topPipeCollision() || bottomPipeCollision() || birdCollision()) {
+    return true
+  }
+  return false
 }
 
 const hideEndMenu = () => {
@@ -72,7 +83,9 @@ const showEndMenu = () => {
 
 const restGame = () => {}
 
-const endGame = () => {}
+const endGame = () => {
+  showEndMenu()
+}
 
 const birdMove = () => {
   ctx.drawImage(flappyImg, birdX, birdY, birdWidth, birdHeight)
