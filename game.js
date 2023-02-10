@@ -30,6 +30,7 @@ let pipeY = canvas.height - 200
 let scoreDiv = document.getElementById('score-display')
 let score = 0
 let heightScore = 0
+let scored = false
 
 document.body.addEventListener('touchstart', () => (birdSpeed = flapSpeed))
 document.body.addEventListener('keyup', e => e.key === ' ' && (birdSpeed = flapSpeed))
@@ -40,7 +41,19 @@ document.getElementById('restart-button').addEventListener('click', () => {
   loop()
 })
 
-const increaseScore = () => {}
+const increaseScore = () => {
+  if (birdX > pipeX + pipeWidth &&
+     (birdY < pipeY + pipeGap || birdY + birdHeight > pipeY + pipeGap) &&
+     !scored) {
+    score++
+    scoreDiv.innerHTML = score
+    scored = true
+  }
+
+  if (birdX < pipeX + pipeWidth) {
+    scored = false
+  }
+}
 
 const collisionCheck = () => {
   const birdBox = {
@@ -98,6 +111,8 @@ const restGame = () => {
   birdAcceleration = 0.1
   pipeX = 400
   pipeY = canvas.height - 200
+  score = 0
+  scoreDiv.innerHTML = score
 }
 
 const endGame = () => {
@@ -129,6 +144,7 @@ const loop = () => {
     endGame()
     return
   }
+  increaseScore()
   requestAnimationFrame(loop)
 }
 
