@@ -11,8 +11,8 @@ flappyImg.src = './assets/flappy_zhiyin.png'
 
 // 游戏
 const flapSpeed = -3
-const birdWidth = 35
-const birdHeight = 35
+const birdWidth = 30
+const birdHeight = 30
 const pipeWidth = 50
 const pipeGap = 125
 
@@ -72,7 +72,7 @@ const collisionCheck = () => {
     x: pipeX,
     y: pipeY + pipeGap + birdHeight,
     width: pipeWidth,
-    height: canvas.height - pipeY
+    height: canvas.height - pipeY - pipeGap
   }
 
   const topPipeCollision = () => (birdBox.x + birdBox.width > topPipeBox.x &&
