@@ -30,16 +30,32 @@ let scoreDiv = document.getElementById('score-display')
 let score = 0
 let heightScore = 0
 
-document.body.addEventListener('touchstart', () => {
-  birdSpeed = flapSpeed
-})
+document.body.addEventListener('touchstart', () => (birdSpeed = flapSpeed))
 
 document.body.addEventListener('keyup', e => e.key === ' ' && (birdSpeed = flapSpeed))
 
 const increaseScore = () => {}
 
 const collisionCheck = () => {
-  
+  // 给鸡和管道加上碰撞边界
+  const birdBox = {
+    x: birdX,
+    y: birdY,
+    width: birdWidth,
+    height: birdHeight
+  }
+  const topPipeBox = {
+    x: pipeX,
+    y: pipeX - pipeGap + birdHeight,
+    width: pipeWidth,
+    height: pipeY
+  }
+  const bottomPipeBox = {
+    x: pipeX,
+    y: pipeY + pipeGap + birdHeight,
+    width: pipeWidth,
+    height: canvas.height - pipeY
+  }
 }
 
 const hideEndMenu = () => {
