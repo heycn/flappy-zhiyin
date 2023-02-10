@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d')
 const gameContainer = document.getElementById('game-container')
 const endMenu = document.getElementById('end-menu')
 const endScore = document.getElementById('end-score')
+const bestScore = document.getElementById('best-score')
 
 // 鸡图
 const flappyImg = new Image()
@@ -31,8 +32,13 @@ let score = 0
 let heightScore = 0
 
 document.body.addEventListener('touchstart', () => (birdSpeed = flapSpeed))
-
 document.body.addEventListener('keyup', e => e.key === ' ' && (birdSpeed = flapSpeed))
+
+document.getElementById('restart-button').addEventListener('click', () => {
+  hideEndMenu()
+  restGame()
+  loop()
+})
 
 const increaseScore = () => {}
 
@@ -79,9 +85,20 @@ const showEndMenu = () => {
   endMenu.style.display = 'block'
   gameContainer.classList.add('backdrop-blur')
   endScore.innerHTML = score
+  if (heightScore < score) {
+    heightScore = score
+  }
+  bestScore.innerHTML = heightScore
 }
 
-const restGame = () => {}
+const restGame = () => {
+  birdX = 50
+  birdY = 50
+  birdSpeed = 0
+  birdAcceleration = 0.1
+  pipeX = 400
+  pipeY = canvas.height - 200
+}
 
 const endGame = () => {
   showEndMenu()
