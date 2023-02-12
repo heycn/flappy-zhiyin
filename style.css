@@ -2,21 +2,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1.8rem;
 }
 
 body {
-  background-color: #73c8a9;
-  font-family: cursive;
-  background-image: linear-gradient(to right, #73c8a9, #373b44);
+  background-color: #525860;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 canvas {
-  margin: 64px auto;
-  border: 5px solid #2e2e2e;
-  border-radius: 10px;
+  margin: 40px auto;
   display: block;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-image: url('assets/Flappy_Bird_Background.png');
+  background-image: url('assets/background.gif');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 1;
@@ -28,7 +30,7 @@ canvas {
 
 #end-menu {
   display: none;
-  margin: 50px auto;
+  margin: 100px auto;
   width: 246px;
   padding: 20px;
   text-align: center;
@@ -50,7 +52,7 @@ canvas {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 button {
@@ -69,4 +71,14 @@ button:hover {
   background-color: #333;
   transform: translateY(-2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 移动端 */
+@media screen and (max-width: 768px) {
+  canvas {
+  margin: 16px auto;
+  }
+  #score-display {
+    margin-top: 2.5rem;
+  }
 }
